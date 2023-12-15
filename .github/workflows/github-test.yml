@@ -45,7 +45,7 @@ jobs:
       - name: Conda environment
         shell: bash -el {0}
         run: |
-            mamba install --file ${{ steps.strings.outputs.environment-file }} --yes --channel https://conda.software.inl.gov/public --channel conda-forge
+            mamba install --file ${{ steps.strings.outputs.environment-file }} --yes --channel conda-forge
       - name: Build
         shell: bash -el {0}
         run: |
