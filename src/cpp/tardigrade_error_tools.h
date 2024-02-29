@@ -98,7 +98,7 @@
     \param file: A standard string or char filename
 */
 #define TARDIGRADE_ERROR_TOOLS_CHECK_INTERNAL(condition, error_message, func, line, file) \
-    if ( ! condition ){                                                                   \
+    if ( ! ( condition ) ){                                                                   \
         TARDIGRADE_ERROR_TOOLS_CATCH(throw std::runtime_error(error_message) )            \
     }                                                                                     \
 

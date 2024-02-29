@@ -12,6 +12,7 @@ Changelog
 New Features
 ============
 - Added a catch function to replace the if statement pattern (:pull:`2`). By `Nathan Miller`_.
+- Added parenthesis to the catch function to try and prevent issues (:pull:`3`). By `Nathan Miller`_.
 
 ******************
 0.7.2 (2023-09-27)
