@@ -89,6 +89,26 @@
 */
 #define TARDIGRADE_ERROR_TOOLS_CATCH_NODE_POINTER(expr) TARDIGRADE_ERROR_TOOLS_CATCH_NODE_POINTER_INTERNAL(expr, __func__, __LINE__, __FILE__)
 
+/*!
+    \brief A macro to check for issues that we want to throw an exception if a condition isn't met
+    \param condition: An expression that evaluates as a boolean
+    \param error_message: The output message if it fails
+    \param func: A standard string or char function name
+    \param line: The integer filename
+    \param file: A standard string or char filename
+*/
+#define TARDIGRADE_ERROR_TOOLS_CHECK_INTERNAL(condition, error_message, func, line, file) \
+    if ( ! ( condition ) ){                                                                   \
+        TARDIGRADE_ERROR_TOOLS_CATCH(throw std::runtime_error(error_message) )            \
+    }                                                                                     \
+
+/*!
+    \brief A macro to check for issues that we want to throw an exception if a condition isn't met
+    \param condition: An expression that evaluates as a boolean
+    \param error_message: The output message if it fails
+*/
+#define TARDIGRADE_ERROR_TOOLS_CHECK(condition, error_message) TARDIGRADE_ERROR_TOOLS_CHECK_INTERNAL(condition, error_message, __func__, __LINE__, __FILE__)
+
 
 namespace tardigradeErrorTools{
 
@@ -141,7 +161,9 @@ namespace tardigradeErrorTools{
             void print( const bool header = true );
     };
 
-    void printNestedExceptions( const std::exception &e, std::size_t depth = 0, std::string message = "");
+    void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth = 0);
+
+    void printNestedExceptions( const std::exception &e, std::string message = "" );
 
 }
 

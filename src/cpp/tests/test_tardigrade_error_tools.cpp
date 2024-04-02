@@ -232,3 +232,27 @@ BOOST_AUTO_TEST_CASE( test_form_node_stacktrace ){
     BOOST_CHECK( !result.is_empty( ) );
 
 }
+
+void runCheck( const bool condition ){
+    TARDIGRADE_ERROR_TOOLS_CHECK(condition, "mymessage")
+}
+
+BOOST_AUTO_TEST_CASE( test_tardigrade_error_tools_check ){
+
+    boost::test_tools::output_test_stream result;
+
+    //Initialize test variables
+    cerr_redirect guard( result.rdbuf( ) );
+
+    BOOST_CHECK_NO_THROW( runCheck( true ) );
+
+    try{
+        TARDIGRADE_ERROR_TOOLS_CATCH( runCheck( false ) );
+    }
+    catch( std::exception &e ){
+        tardigradeErrorTools::printNestedExceptions( e );
+    }
+
+    BOOST_CHECK( !result.is_empty( ) );
+
+}

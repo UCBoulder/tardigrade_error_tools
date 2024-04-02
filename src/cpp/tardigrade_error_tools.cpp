@@ -78,11 +78,11 @@ namespace tardigradeErrorTools{
         return;
     }
 
-    void printNestedExceptions( const std::exception &e, std::size_t depth, std::string message){
+    void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth ){
         /*!
-         * Print the nested exceptions starting with the one deepest (closest to the error) and ending
-         * with the outermost function call. Users should call this function by just passing in the
-         * exception. The other arguments are for recursion.
+         * Capture the nested exceptions starting with the one deepest (closest to the error) and ending
+         * with the outermost function call. Users should typically call this function by just passing in the
+         * exception and a std::string for the message. The depth is for recursion.
          * 
          * \param &e: The nested exceptions
          * \param depth: The current depth (defaults to zero)
@@ -94,14 +94,27 @@ namespace tardigradeErrorTools{
         try {
 
             std::rethrow_if_nested( e );
-            std::cerr << message;
 
         }
         catch ( const std::exception &nested ){
 
-            printNestedExceptions( nested, depth + 1, message );
+            captureNestedExceptions( nested, message, depth + 1 );
  
        }
+    }
+
+    void printNestedExceptions( const std::exception &e, std::string message ){
+        /*!
+         * Print the nested exceptions starting with the one deepest (closest to the error) and ending
+         * with the outermost function call. Users should call this function by just passing in the
+         * exception.
+         * 
+         * \param &e: The nested exceptions
+         * \param message: The output message (defaults to "")
+         */
+
+        captureNestedExceptions( e, message );
+        std::cerr << message;
     }
 
 }
