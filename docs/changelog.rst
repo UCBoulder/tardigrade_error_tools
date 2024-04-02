@@ -6,13 +6,18 @@ Changelog
 #########
 
 ******************
-0.7.3 (unreleased)
+0.8.0 (2024-04-02)
 ******************
 
 New Features
 ============
 - Added a catch function to replace the if statement pattern (:pull:`2`). By `Nathan Miller`_.
 - Added parenthesis to the catch function to try and prevent issues (:pull:`3`). By `Nathan Miller`_.
+- Added a function to capture the error message in a standard string (:pull:`4`). By `Nathan Miller`_.
+
+Breaking Changes
+================
+- Changed the printNestedExceptions interface to only accept the exception and a header message. This will affect almost no-one but it is breaking (:pull:`4`). By `Nathan Miller`_.
 
 ******************
 0.7.2 (2023-09-27)

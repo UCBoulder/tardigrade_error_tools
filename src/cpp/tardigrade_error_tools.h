@@ -161,7 +161,9 @@ namespace tardigradeErrorTools{
             void print( const bool header = true );
     };
 
-    void printNestedExceptions( const std::exception &e, std::size_t depth = 0, std::string message = "");
+    void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth = 0);
+
+    void printNestedExceptions( const std::exception &e, std::string message = "" );
 
 }
 
