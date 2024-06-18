@@ -1,4 +1,4 @@
-add_library (${PROJECT_NAME} "${PROJECT_NAME}.cpp" "${PROJECT_NAME}.h")
+add_library(${PROJECT_NAME} "${PROJECT_NAME}.cpp" "${PROJECT_NAME}.h")
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER ${PROJECT_NAME}.h)
 target_compile_options(${PROJECT_NAME} PUBLIC)
 install(TARGETS ${PROJECT_NAME}
