@@ -33,29 +33,43 @@
         message += " ): ";                                                         \
         message += func;                                                           \
 
-/*!
-    \brief An internal macro to catch exceptions and add additional information
-           Not intended to be used in user code 
-    \param expr: The expression to be evaluated
-    \param func: A standard string or char function name
-    \param line: The integer filename
-    \param file: A standard string or char filename
-*/
-#define TARDIGRADE_ERROR_TOOLS_CATCH_INTERNAL(expr, func, line, file)                         \
-    try{                                                                           \
-        expr;                                                                      \
-    }                                                                              \
-    catch(const std::exception &e){                                                \
-        std::string message;                                                       \
-        STACKTRACE_FORMAT(message, func, line, file)                               \
-        std::throw_with_nested(std::runtime_error( message ));                     \
-    }                                                                              \
-    catch(...){                                                                    \
-        std::string message;                                                       \
-        STACKTRACE_FORMAT(message, func, line, file)                               \
-        std::throw_with_nested(std::runtime_error( message ));                     \
-    }                                                                              \
+#ifdef TARDIGRADE_ERROR_TOOLS_OPT
+    /*!
+        \brief An internal macro to catch exceptions and add additional information
+               Not intended to be used in user code 
+        \param expr: The expression to be evaluated
+        \param func: A standard string or char function name
+        \param line: The integer filename
+        \param file: A standard string or char filename
+    */
+    #define TARDIGRADE_ERROR_TOOLS_CATCH_INTERNAL(expr, func, line, file)              \
+        expr;                                                                          \
 
+#else
+    /*!
+        \brief An internal macro to catch exceptions and add additional information
+               Not intended to be used in user code 
+        \param expr: The expression to be evaluated
+        \param func: A standard string or char function name
+        \param line: The integer filename
+        \param file: A standard string or char filename
+    */
+    #define TARDIGRADE_ERROR_TOOLS_CATCH_INTERNAL(expr, func, line, file)              \
+        try{                                                                           \
+            expr;                                                                      \
+        }                                                                              \
+        catch(const std::exception &e){                                                \
+            std::string message;                                                       \
+            STACKTRACE_FORMAT(message, func, line, file)                               \
+            std::throw_with_nested(std::runtime_error( message ));                     \
+        }                                                                              \
+        catch(...){                                                                    \
+            std::string message;                                                       \
+            STACKTRACE_FORMAT(message, func, line, file)                               \
+            std::throw_with_nested(std::runtime_error( message ));                     \
+        }                                                                              \
+
+#endif
 
 /*!
     \brief A macro to catch exceptions and add additional information
@@ -63,25 +77,41 @@
 */
 #define TARDIGRADE_ERROR_TOOLS_CATCH(expr) TARDIGRADE_ERROR_TOOLS_CATCH_INTERNAL(expr, __func__, __LINE__, __FILE__)
 
-/*!
-    \brief An internal macro to catch tardigradeErrorTools::Node pointers and convert them to exceptions
-           Not intended to be used in user code 
-    \param expr: The expression to be evaluated that returns a pointer
-        to an tardigradeErrorTools::Node object
-    \param func: A standard string or char function name
-    \param line: The integer filename
-    \param file: A standard string or char filename
-*/
-#define TARDIGRADE_ERROR_TOOLS_CATCH_NODE_POINTER_INTERNAL(expr, func, line, file)            \
-    if ( expr ){                                                                   \
-        std::stringstream buffer;                                                  \
-        std::streambuf * old = std::cerr.rdbuf( buffer.rdbuf( ) );                 \
-        expr->print( );                                                            \
-        std::string message = buffer.str( );                                       \
-        std::cerr.rdbuf( old );                                                    \
-        STACKTRACE_FORMAT(message, func, line, file)                               \
-        throw std::runtime_error( message );                                       \
-    }                                                                              \
+#ifdef TARDIGRADE_ERROR_TOOLS_OPT
+    /*!
+        \brief An internal macro to catch tardigradeErrorTools::Node pointers and convert them to exceptions
+               Not intended to be used in user code 
+        \param expr: The expression to be evaluated that returns a pointer
+            to an tardigradeErrorTools::Node object
+        \param func: A standard string or char function name
+        \param line: The integer filename
+        \param file: A standard string or char filename
+    */
+    #define TARDIGRADE_ERROR_TOOLS_CATCH_NODE_POINTER_INTERNAL(expr, func, line, file) \
+        expr;                                                                          \
+
+#else
+    /*!
+        \brief An internal macro to catch tardigradeErrorTools::Node pointers and convert them to exceptions
+               Not intended to be used in user code 
+        \param expr: The expression to be evaluated that returns a pointer
+            to an tardigradeErrorTools::Node object
+        \param func: A standard string or char function name
+        \param line: The integer filename
+        \param file: A standard string or char filename
+    */
+    #define TARDIGRADE_ERROR_TOOLS_CATCH_NODE_POINTER_INTERNAL(expr, func, line, file) \
+        if ( expr ){                                                                   \
+            std::stringstream buffer;                                                  \
+            std::streambuf * old = std::cerr.rdbuf( buffer.rdbuf( ) );                 \
+            expr->print( );                                                            \
+            std::string message = buffer.str( );                                       \
+            std::cerr.rdbuf( old );                                                    \
+            STACKTRACE_FORMAT(message, func, line, file)                               \
+            throw std::runtime_error( message );                                       \
+        }                                                                              \
+
+#endif
 
 /*!
     \brief A macro to catch tardigradeErrorTools::Node pointers and convert them to exceptions
@@ -89,18 +119,32 @@
 */
 #define TARDIGRADE_ERROR_TOOLS_CATCH_NODE_POINTER(expr) TARDIGRADE_ERROR_TOOLS_CATCH_NODE_POINTER_INTERNAL(expr, __func__, __LINE__, __FILE__)
 
-/*!
-    \brief A macro to check for issues that we want to throw an exception if a condition isn't met
-    \param condition: An expression that evaluates as a boolean
-    \param error_message: The output message if it fails
-    \param func: A standard string or char function name
-    \param line: The integer filename
-    \param file: A standard string or char filename
-*/
-#define TARDIGRADE_ERROR_TOOLS_CHECK_INTERNAL(condition, error_message, func, line, file) \
-    if ( ! ( condition ) ){                                                                   \
-        TARDIGRADE_ERROR_TOOLS_CATCH(throw std::runtime_error(error_message) )            \
-    }                                                                                     \
+#ifdef TARDIGRADE_ERROR_TOOLS_OPT
+    /*!
+        \brief A macro to check for issues that we want to throw an exception if a condition isn't met - OPTIMIZED AWAY IF TARDIGRADE_ERROR_TOOLS_OPT is defined!
+        \param condition: An expression that evaluates as a boolean
+        \param error_message: The output message if it fails
+        \param func: A standard string or char function name
+        \param line: The integer filename
+        \param file: A standard string or char filename
+    */
+    #define TARDIGRADE_ERROR_TOOLS_CHECK_INTERNAL(condition, error_message, func, line, file)
+
+#else
+    /*!
+        \brief A macro to check for issues that we want to throw an exception if a condition isn't met
+        \param condition: An expression that evaluates as a boolean
+        \param error_message: The output message if it fails
+        \param func: A standard string or char function name
+        \param line: The integer filename
+        \param file: A standard string or char filename
+    */
+    #define TARDIGRADE_ERROR_TOOLS_CHECK_INTERNAL(condition, error_message, func, line, file) \
+        if ( ! ( condition ) ){                                                               \
+            TARDIGRADE_ERROR_TOOLS_CATCH(throw std::runtime_error(error_message) )            \
+        }                                                                                     \
+
+#endif
 
 /*!
     \brief A macro to check for issues that we want to throw an exception if a condition isn't met
