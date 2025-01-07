@@ -6,6 +6,14 @@ Changelog
 #########
 
 ******************
+0.8.1 (unreleased)
+******************
+
+Bug Fixes
+=========
+- Removed whitespace in add_library call in CMakeLists file (:pull:`6`). By `Nathan Miller`_.
+
+******************
 0.8.0 (2024-04-02)
 ******************
 
