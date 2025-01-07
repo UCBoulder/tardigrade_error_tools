@@ -9,6 +9,10 @@ Changelog
 0.8.1 (unreleased)
 ******************
 
+New Features
+============
+- Added header only build (:pull:`7`). By `Nathan Miller`_.
+
 Bug Fixes
 =========
 - Removed whitespace in add_library call in CMakeLists file (:pull:`6`). By `Nathan Miller`_.
