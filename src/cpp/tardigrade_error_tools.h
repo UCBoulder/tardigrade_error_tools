@@ -153,6 +153,22 @@
 */
 #define TARDIGRADE_ERROR_TOOLS_CHECK(condition, error_message) TARDIGRADE_ERROR_TOOLS_CHECK_INTERNAL(condition, error_message, __func__, __LINE__, __FILE__)
 
+#ifdef TARDIGRADE_ERROR_TOOLS_OPT
+    /*!
+     * \brief A macro which allows code to be removed if the code is being built for optimization not development.
+     * \param expr: The expression to be evaluated
+     */
+    #define TARDIGRADE_ERROR_TOOLS_EVAL(expr) \
+
+#else
+    /*!
+     * \brief A macro which allows code to be removed if the code is being built for optimization not development.
+     * \param expr: The expression to be evaluated
+     */
+    #define TARDIGRADE_ERROR_TOOLS_EVAL(expr) \
+        expr;                                 \
+
+#endif
 
 namespace tardigradeErrorTools{
 
