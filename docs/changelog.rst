@@ -6,20 +6,38 @@ Changelog
 #########
 
 ******************
-0.8.1 (unreleased)
+0.9.1 (unreleased)
+******************
+
+******************
+0.9.0 (01-07-2025)
 ******************
 
 New Features
 ============
 - Added header only build (:pull:`8`). By `Nathan Miller`_.
+- Added optimized build flag that bypasses the error handling (:pull:`10`). By `Nathan Miller`_.
+- Added macro for code that will be evaluated only when errors are being handled (:pull:`10`). By `Nathan Miller`_.
+
+Internal Changes
+================
+- Changed to use O3 optimization by default (:pull:`7`). By `Nathan Miller`_.
 
 Bug Fixes
 =========
 - Removed whitespace in add_library call in CMakeLists file (:pull:`6`). By `Nathan Miller`_.
 
+Release
+=======
+- Released version 0.9.0 (:pull:`11`). By `Nathan Miller`_.
+
 ******************
 0.8.0 (2024-04-02)
 ******************
+
+Release
+=======
+- Released version 0.8.0 (:pull:`5`). By `Nathan Miller`_.
 
 New Features
 ============

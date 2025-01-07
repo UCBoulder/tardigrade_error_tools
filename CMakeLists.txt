@@ -17,6 +17,11 @@ if(${TARDIGRADE_HEADER_ONLY})
   message("BUILDING IN HEADER ONLY MODE")
 endif()
 
+if(${TARDIGRADE_ERROR_TOOLS_OPT})
+  add_compile_definitions(TARDIGRADE_ERROR_TOOLS_OPT)
+  message(WARNING "BUILDING OPTIMIZED ERROR TOOLS. NO ERRORS WILL BE CAUGHT")
+endif()
+
 # Add the cmake folder to locate project CMake module(s)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/${CMAKE_SRC_PATH}" ${CMAKE_MODULE_PATH})
 

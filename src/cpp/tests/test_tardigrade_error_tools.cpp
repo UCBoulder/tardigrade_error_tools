@@ -38,6 +38,8 @@ struct cerr_redirect{
         std::streambuf * old;
 };
 
+#ifndef TARDIGRADE_ERROR_TOOLS_OPT
+
 BOOST_AUTO_TEST_CASE( testReplaceAll ){
     /*!
      * Test of the replaceAll function
@@ -256,3 +258,40 @@ BOOST_AUTO_TEST_CASE( test_tardigrade_error_tools_check ){
     BOOST_CHECK( !result.is_empty( ) );
 
 }
+
+BOOST_AUTO_TEST_CASE( test_eval ){
+
+    double v = 0;
+
+    TARDIGRADE_ERROR_TOOLS_EVAL( v += 1; v = 5; )
+
+    BOOST_TEST( v == 5 );
+
+}
+
+#else
+
+bool tempFunction( double &v ){
+    v = 1;
+    return false;
+}
+
+BOOST_AUTO_TEST_CASE( test_optimized_build ){
+
+    double v = 0;
+
+    TARDIGRADE_ERROR_TOOLS_CHECK( tempFunction( v ), "something failed" );
+
+    BOOST_TEST( v == 0 );
+
+    TARDIGRADE_ERROR_TOOLS_CATCH( tempFunction( v ) );
+
+    BOOST_TEST( v == 1 );
+
+    TARDIGRADE_ERROR_TOOLS_EVAL( v += 1; v = 5; )
+
+    BOOST_TEST( v == 1 );
+
+}
+
+#endif
