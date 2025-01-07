@@ -11,7 +11,7 @@ Changelog
 
 New Features
 ============
-- Added header only build (:pull:`7`). By `Nathan Miller`_.
+- Added header only build (:pull:`8`). By `Nathan Miller`_.
 
 Bug Fixes
 =========
