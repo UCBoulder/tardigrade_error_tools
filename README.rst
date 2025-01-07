@@ -19,7 +19,7 @@ Information
 Developers
 ==========
 
-* Nathan Miller nathanm@lanl.gov
+* Nathan Miller Nathan.A.Miller@colorado.edu
 * Kyle Brindley kbrindley@lanl.gov
 
 ************
@@ -108,13 +108,25 @@ Build the library
 
 Follow the steps for building the documentation and pick up below.
 
-4) Build just the library
+1) Build just the library
 
    .. code-block:: bash
 
       $ pwd
       /path/to/tardigrade_error_tools/build
       $ cmake --build src/cpp
+
+The library can be used as a header-only library by defining the pre-processor
+variable ``TARDIGRADE_HEADER_ONLY``. This can be helpful for code optimization
+purposes or if in-lining the code is otherwise important. Additionally, the error
+handling can be turned off by defining the pre-processor variable ``TARDIGRADE_ERROR_TOOLS_OPT``.
+Both of these variable can be independently accessed through cmake via
+
+   .. code-block:: back
+
+      $ pwd
+      /path/to/tardigrade_error_tools/build
+      $ cmake --build src/cpp -DTARDIGRADE_HEADER_ONLY=ON -DTARDIGRADE_ERROR_TOOLS_OPT=ON
 
 *******************
 Install the library
@@ -177,3 +189,37 @@ sstelmo
    .. code-block:: bash
 
       $ python setup.py build_ext --inplace
+
+*********
+Use cases
+*********
+
+The error tools interfaces can be used in a number of ways that automate try-catch exception handling. The three
+major macros are ``TARDIGRADE_ERROR_TOOLS_CATCH``, ``TARDIGRADE_ERROR_TOOLS_CHECK``, and ``TARDIGRADE_ERROR_TOOLS_EVAL``.
+
+1) ``TARDIGRADE_ERROR_TOOLS_CATCH``
+
+This macro evaluates the provided function or expression and, if it throws an exception, creates a nested
+exception stack trace. If ``TARDIGRADE_ERROR_TOOLS_OPT`` is defined, the expression will still be evaluated.
+
+   .. code-block:: c++
+
+      TARDIGRADE_ERROR_TOOLS( myFunction( first_parameter, second_parameter, ... ) )
+
+2) ``TARDIGRADE_ERROR_TOOLS_CHECK``
+
+This macro evaluates a provided expression and throws an exception if the expression is false. This is useful
+as the root error handling object. If ``TARDIGRADE_ERROR_TOOLS_OPT`` is defined, the expression will not be
+evaluated.
+
+   .. code-block:: c++
+
+      TARDIGRADE_ERROR_TOOLS_CHECK( myExpression, "My error message" )
+
+3) ``TARDIGRADE_ERROR_TOOLS_EVAL``
+
+This macro evaluates the provided expression and will not be evaluated if ``TARDIGRADE_ERROR_TOOLS_OPT`` is defined.
+
+   .. code-block:: c++
+
+      TARDIGRADE_ERROR_TOOLS_EVAL( myFirstExpression; mySecondExpression; )
