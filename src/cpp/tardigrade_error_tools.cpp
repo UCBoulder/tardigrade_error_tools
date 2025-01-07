@@ -13,6 +13,14 @@
 namespace tardigradeErrorTools{
 
     void replaceAll( std::string& str, const std::string& from, const std::string& to ) {
+        /*!
+         * Replace all instances of 'from' and replace them with 'to' in the string 'str'
+         * 
+         * \param &str: The string to be modified
+         * \param &from: The sub-string to be replaced
+         * \param &to: The replacement string
+         */
+
         size_t start_pos = 0;
         while ( ( start_pos = str.find( from, start_pos ) ) != std::string::npos ) {
             str.replace( start_pos, from.length( ), to );
@@ -20,36 +28,36 @@ namespace tardigradeErrorTools{
         }
     }
 
-    /**
-      * Add another layer to the errors
-      *
-      * Will be depreciated because it encourages unsafe coding practices
-      *
-      * \param Node &newNode: The new node to be added
-      */
     void Node::addNext( Node *newNode ){
+        /*!
+          * Add another layer to the errors
+          *
+          * Will be depreciated because it encourages unsafe coding practices
+          *
+          * \param &newNode: The new node to be added
+          */
         this->next.reset( newNode );
         return;
     }
 
-    /**
-      * Add another layer to the errors
-      *
-      * \param Node &newNode: The new node to be added
-      */
     void Node::addNext( std::unique_ptr< Node > &newNode ){
+        /*!
+          * Add another layer to the errors
+          *
+          * \param &newNode: The new node to be added
+          */
         this->next = std::move( newNode );
         return;
     }
 
-    /**
-      * Print the errors in a list of nodes.
-      *
-      * \param header const bool Flag which indicates if the header
-      *     should be printed
-      *
-      */
     void Node::print( const bool header ){
+        /*!
+          * Print the errors in a list of nodes.
+          *
+          * \param header: Flag which indicates if the header
+          *     should be printed
+          *
+          */
         if ( header ){
             std::cerr << "\n***************\n";
             std::cerr <<   "*    ERROR    *\n";
