@@ -167,5 +167,8 @@ namespace tardigradeErrorTools{
 
 }
 
+#ifdef TARDIGRADE_HEADER_ONLY
+    #include "tardigrade_error_tools.cpp"
+#endif
 
 #endif
