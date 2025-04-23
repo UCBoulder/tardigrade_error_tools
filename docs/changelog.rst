@@ -9,6 +9,11 @@ Changelog
 0.9.1 (unreleased)
 ******************
 
+Documentation
+=============
+
+- Small updates to the ReadMe (:pull:`12`). By `Nathan Miller`_.
+
 ******************
 0.9.0 (01-07-2025)
 ******************
