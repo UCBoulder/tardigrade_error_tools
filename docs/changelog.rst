@@ -6,13 +6,32 @@ Changelog
 #########
 
 ******************
-0.9.1 (unreleased)
+0.9.2 (04-24-2025)
 ******************
+
+Internal Changes
+================
+- Trying to help cmake find the right python interpreter (:pull:`15`). By `Nathan Miller`_.
+
+Release
+=======
+- Released version 0.9.2 (:pull:`16`). By `Nathan Miller`_.
+
+******************
+0.9.1 (04-23-2025)
+******************
+
+Internal Changes
+================
+- Trying to update the conda packaging (:pull:`13`). By `Nathan Miller`_.
 
 Documentation
 =============
-
 - Small updates to the ReadMe (:pull:`12`). By `Nathan Miller`_.
+
+Release
+=======
+- Released version 0.9.1 (:pull:`14`). By `Nathan Miller`_.
 
 ******************
 0.9.0 (01-07-2025)
