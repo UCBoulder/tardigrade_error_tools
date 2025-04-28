@@ -5,7 +5,6 @@ project(tardigrade_error_tools)
 # Set common project paths relative to project root directory
 set(CPP_SRC_PATH "src/cpp")
 set(PYTHON_SRC_PATH "src/python")
-set(PYTHON_TARGET ${PROJECT_NAME}_PYTHON)
 set(CMAKE_SRC_PATH "src/cmake")
 
 # Add a cached variable to build the python interface

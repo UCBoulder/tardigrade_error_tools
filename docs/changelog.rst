@@ -5,35 +5,6 @@
 Changelog
 #########
 
-
-******************
-0.9.4 (04-28-2025)
-******************
-
-Internal Changes
-================
-- Changed the target name of the python bindings (:pull:`19`). By `Nathan Miller`_.
-
-Bug Fixes
-=========
-- Re-enabled building the python bindings with the shared object library (:pull:`19`). By `Nathan Miller`_.
-
-Release
-=======
-- Released version 0.9.4 (:pull:`20`). By `Nathan Miller`_.
-
-******************
-0.9.3 (04-28-2025)
-******************
-
-Internal Changes
-================
-- Improved finding the right python interpreter (:pull:`17`). By `Nathan Miller`_.
-
-Release
-=======
-- Released version 0.9.3 (:pull:`18`). By `Nathan Miller`_.
-
 ******************
 0.9.2 (04-24-2025)
 ******************

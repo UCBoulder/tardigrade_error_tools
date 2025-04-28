@@ -17,7 +17,6 @@ include_dirs = [str(settings.CPP_SOURCE_DIRECTORY), str(settings.CONDA_ENVIRONME
 # Find current project static library
 project_shared_libraries = settings.BUILD_DIRECTORY / settings.CPP_SOURCE_SUBDIRECTORY / f"lib{settings.PROJECT_NAME}.so"
 shared_libraries = [str(project_shared_libraries.resolve())]
-print("shared_libraries: ", shared_libraries)
 
 # Define the build configuration
 ext_modules = [Extension(settings.PROJECT_NAME,
