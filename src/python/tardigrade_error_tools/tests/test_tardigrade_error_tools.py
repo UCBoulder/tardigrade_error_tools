@@ -4,7 +4,7 @@ import difflib
 
 import pytest
 
-import tardigrade_error_tools
+from tardigrade_error_tools import tardigrade_error_tools
 
 
 function_string = "some_function"
