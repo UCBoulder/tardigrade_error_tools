@@ -1,27 +1,26 @@
-set(CYTHON_SOURCE_FILES
-    tardigrade_error_tools_python.pxd
-    tardigrade_error_tools_python.pyx
-    setup.py
-    settings.py.in
-    conftest.py
+set(PYTHON_SOURCE_FILES
+    pyproject.toml.in
+    tardigrade_error_tools/_settings.py.in
+    tardigrade_error_tools/__init__.py
+    tardigrade_error_tools/conftest.py
+    tardigrade_error_tools/tests/test_tardigrade_error_tools.py
 )
-configure_file(settings.py.in settings.py)
-add_custom_target(${PROJECT_NAME}_PYTHON ALL
-                  DEPENDS ${PROJECT_NAME})
-add_custom_command(TARGET ${PROJECT_NAME}_PYTHON PRE_BUILD
+configure_file(tardigrade_error_tools/_settings.py.in tardigrade_error_tools/_settings.py)
+configure_file(pyproject.toml.in pyproject.toml)
+
+add_custom_target(${PYTHON_TARGET} ALL
+                  DEPENDS ${CYTHON_TARGET})
+add_custom_command(TARGET ${PYTHON_TARGET} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    "${PROJECT_SOURCE_DIR}/${PYTHON_SRC_PATH}" "${PROJECT_BINARY_DIR}/${PYTHON_SRC_PATH}"
-                   COMMAND python setup.py build_ext --inplace
-                   DEPENDS ${CYTHON_SOURCE_FILES}
+                   COMMAND ${Python_EXECUTABLE} -m build --no-isolation
+                   DEPENDS ${PYTHON_SOURCE_FILES} ${CYTHON_TARGET}
+                   COMMENT "Building the ${PROJECT_NAME} Cython extension - python target"
                   )
-install(FILES 
-            "${PROJECT_SOURCE_DIR}/${PYTHON_SRC_PATH}/${PROJECT_NAME}_python.pyx"
-            "${PROJECT_SOURCE_DIR}/${PYTHON_SRC_PATH}/${PROJECT_NAME}_python.pxd"
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 # Add pytests as a ctest function for automated testing under unified CMake/CTest tools
 add_test(NAME pytest
-         COMMAND pytest --cov-report=xml:$(pwd)/cobertura.xml --cov=$(pwd)/. --cov-report=html:$(pwd)/htmlcov
+         COMMAND
+             ${CMAKE_COMMAND} -E env LD_LIBRARY_PATH=ENV{LD_LIBRARY_PATH}:${CMAKE_BINARY_DIR}/${CPP_SRC_PATH}
+             pytest
          WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/${PYTHON_SRC_PATH}
         )
-
-set_property(TEST pytest PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=ENV{LD_LIBRARY_PATH}:${PROJECT_BINARY_DIR}/${CPP_SRC_PATH}")
