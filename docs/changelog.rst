@@ -5,6 +5,29 @@
 Changelog
 #########
 
+******************
+0.9.6 (unreleased)
+******************
+
+Bug Fixes
+=========
+- Corrected bug in setuptools_scm import in __init__.py for the python interface (:pull:`27`). By `Nathan Miller`_.
+
+Internal Changes
+================
+- Added the source file to the install (:pull:`28`). By `Nathan Miller`_.
+
+******************
+0.9.5 (04-29-2025)
+******************
+
+Internal Changes
+================
+- Changed packaging to reflect newer efforts (:pull:`24`). By `Nathan Miller`_.
+
+Release
+=======
+- Released version 0.9.5 (:pull:`25`). By `Nathan Miller`_.
 
 ******************
 0.9.4 (04-28-2025)
