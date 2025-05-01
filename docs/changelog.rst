@@ -11,7 +11,11 @@ Changelog
 
 Bug Fixes
 =========
-- Corrected bug in setuptools_scm import in __init__.py for the python interface (:pull:`26`). By `Nathan Miller`_.
+- Corrected bug in setuptools_scm import in __init__.py for the python interface (:pull:`27`). By `Nathan Miller`_.
+
+Internal Changes
+================
+- Added the source file to the install (:pull:`28`). By `Nathan Miller`_.
 
 ******************
 0.9.5 (04-29-2025)
