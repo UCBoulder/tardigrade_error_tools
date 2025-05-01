@@ -11,7 +11,11 @@ Changelog
 
 Bug Fixes
 =========
-- Corrected bug in setuptools_scm import in __init__.py for the python interface (:pull:`26`). By `Nathan Miller`_.
+- Corrected bug in setuptools_scm import in __init__.py for the python interface (:pull:`27`). By _`Nathan Miller`.
+
+Internal Changes
+================
+- Added the source file to the install (:pull:`28`). By _`Nathan Miller`.
 
 ******************
 0.9.5 (04-29-2025)
@@ -19,11 +23,11 @@ Bug Fixes
 
 Internal Changes
 ================
-- Changed packaging to reflect newer efforts (:pull:`24`). By `Nathan Miller`_.
+- Changed packaging to reflect newer efforts (:pull:`24`). By _`Nathan Miller`.
 
 Release
 =======
-- Released version 0.9.5 (:pull:`25`). By `Nathan Miller`_.
+- Released version 0.9.5 (:pull:`25`). By _`Nathan Miller`.
 
 ******************
 0.9.4 (04-28-2025)
@@ -31,15 +35,15 @@ Release
 
 Internal Changes
 ================
-- Changed the target name of the python bindings (:pull:`19`). By `Nathan Miller`_.
+- Changed the target name of the python bindings (:pull:`19`). By _`Nathan Miller`.
 
 Bug Fixes
 =========
-- Re-enabled building the python bindings with the shared object library (:pull:`19`). By `Nathan Miller`_.
+- Re-enabled building the python bindings with the shared object library (:pull:`19`). By _`Nathan Miller`.
 
 Release
 =======
-- Released version 0.9.4 (:pull:`20`). By `Nathan Miller`_.
+- Released version 0.9.4 (:pull:`20`). By _`Nathan Miller`.
 
 ******************
 0.9.3 (04-28-2025)
@@ -47,11 +51,11 @@ Release
 
 Internal Changes
 ================
-- Improved finding the right python interpreter (:pull:`17`). By `Nathan Miller`_.
+- Improved finding the right python interpreter (:pull:`17`). By _`Nathan Miller`.
 
 Release
 =======
-- Released version 0.9.3 (:pull:`18`). By `Nathan Miller`_.
+- Released version 0.9.3 (:pull:`18`). By _`Nathan Miller`.
 
 ******************
 0.9.2 (04-24-2025)
@@ -59,11 +63,11 @@ Release
 
 Internal Changes
 ================
-- Trying to help cmake find the right python interpreter (:pull:`15`). By `Nathan Miller`_.
+- Trying to help cmake find the right python interpreter (:pull:`15`). By _`Nathan Miller`.
 
 Release
 =======
-- Released version 0.9.2 (:pull:`16`). By `Nathan Miller`_.
+- Released version 0.9.2 (:pull:`16`). By _`Nathan Miller`.
 
 ******************
 0.9.1 (04-23-2025)
@@ -71,15 +75,15 @@ Release
 
 Internal Changes
 ================
-- Trying to update the conda packaging (:pull:`13`). By `Nathan Miller`_.
+- Trying to update the conda packaging (:pull:`13`). By _`Nathan Miller`.
 
 Documentation
 =============
-- Small updates to the ReadMe (:pull:`12`). By `Nathan Miller`_.
+- Small updates to the ReadMe (:pull:`12`). By _`Nathan Miller`.
 
 Release
 =======
-- Released version 0.9.1 (:pull:`14`). By `Nathan Miller`_.
+- Released version 0.9.1 (:pull:`14`). By _`Nathan Miller`.
 
 ******************
 0.9.0 (01-07-2025)
@@ -87,21 +91,21 @@ Release
 
 New Features
 ============
-- Added header only build (:pull:`8`). By `Nathan Miller`_.
-- Added optimized build flag that bypasses the error handling (:pull:`10`). By `Nathan Miller`_.
-- Added macro for code that will be evaluated only when errors are being handled (:pull:`10`). By `Nathan Miller`_.
+- Added header only build (:pull:`8`). By _`Nathan Miller`.
+- Added optimized build flag that bypasses the error handling (:pull:`10`). By _`Nathan Miller`.
+- Added macro for code that will be evaluated only when errors are being handled (:pull:`10`). By _`Nathan Miller`.
 
 Internal Changes
 ================
-- Changed to use O3 optimization by default (:pull:`7`). By `Nathan Miller`_.
+- Changed to use O3 optimization by default (:pull:`7`). By _`Nathan Miller`.
 
 Bug Fixes
 =========
-- Removed whitespace in add_library call in CMakeLists file (:pull:`6`). By `Nathan Miller`_.
+- Removed whitespace in add_library call in CMakeLists file (:pull:`6`). By _`Nathan Miller`.
 
 Release
 =======
-- Released version 0.9.0 (:pull:`11`). By `Nathan Miller`_.
+- Released version 0.9.0 (:pull:`11`). By _`Nathan Miller`.
 
 ******************
 0.8.0 (2024-04-02)
@@ -109,17 +113,17 @@ Release
 
 Release
 =======
-- Released version 0.8.0 (:pull:`5`). By `Nathan Miller`_.
+- Released version 0.8.0 (:pull:`5`). By _`Nathan Miller`.
 
 New Features
 ============
-- Added a catch function to replace the if statement pattern (:pull:`2`). By `Nathan Miller`_.
-- Added parenthesis to the catch function to try and prevent issues (:pull:`3`). By `Nathan Miller`_.
-- Added a function to capture the error message in a standard string (:pull:`4`). By `Nathan Miller`_.
+- Added a catch function to replace the if statement pattern (:pull:`2`). By _`Nathan Miller`.
+- Added parenthesis to the catch function to try and prevent issues (:pull:`3`). By _`Nathan Miller`.
+- Added a function to capture the error message in a standard string (:pull:`4`). By _`Nathan Miller`.
 
 Breaking Changes
 ================
-- Changed the printNestedExceptions interface to only accept the exception and a header message. This will affect almost no-one but it is breaking (:pull:`4`). By `Nathan Miller`_.
+- Changed the printNestedExceptions interface to only accept the exception and a header message. This will affect almost no-one but it is breaking (:pull:`4`). By _`Nathan Miller`.
 
 ******************
 0.7.2 (2023-09-27)
@@ -168,11 +172,11 @@ Internal Changes
 
 New Features
 ============
-- Added stacktrace capability using nested exceptions (:merge:`41`). By `Nathan Miller`_.
+- Added stacktrace capability using nested exceptions (:merge:`41`). By _`Nathan Miller`.
 
 Documentation
 =============
-- Added documentation for the new macros, functions, and a quick-start user manual (:merge:`44`). By `Nathan Miller`_.
+- Added documentation for the new macros, functions, and a quick-start user manual (:merge:`44`). By _`Nathan Miller`.
 
 ******************
 0.4.1 (2023-03-16)
@@ -203,7 +207,7 @@ Internal Changes
 ================
 - Build, package, and deploy as a Conda package to the AEA Conda channel (:merge:`23`). By `Kyle Brindley`_.
 - Fix the expected conda package architecture path (:merge:`24`). By `Kyle Brindley`_.
-- Made building the python interface optional (:merge:`25`). By `Nathan Miller`_.
+- Made building the python interface optional (:merge:`25`). By _`Nathan Miller`.
 
 
 ******************
