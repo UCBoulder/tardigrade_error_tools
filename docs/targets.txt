@@ -1,4 +1,4 @@
 .. email addresses
-.. _`Nathan Miller`: nathanm@lanl.gov
+.. _`Nathan Miller`: Nathan.A.Miller@colorado.edu
 .. _`Kyle Brindley`: kbrindley@lanl.gov
 .. _`Sergio Cordova`: sergioc@lanl.gov
