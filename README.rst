@@ -13,8 +13,8 @@ and also help the developer to correct for the errors.
 Information
 ===========
 
-* Documentation: https://aea.re-pages.lanl.gov/material-models/tardigrade_error_tools
-* Wiki: https://re-git.lanl.gov/aea/material-models/tardigrade_error_tools/-/wikis/home
+* Documentation:
+* Wiki:
 
 Developers
 ==========
@@ -56,51 +56,6 @@ Building the documentation
 
    **API Health Note**: The Sphinx API docs are a work-in-progress. The doxygen
    API is much more useful
-
-sstelmo
-=======
-
-1) Activate a [W-13 Python Environment](https://xcp-confluence.lanl.gov/display/PYT/The+W-13+Python+3+environment)
-
-   .. code-block:: bash
-
-      $ sv3r
-
-2) Create the build directory and move there
-
-   .. code-block:: bash
-
-      $ cd build/
-
-3) Run cmake configuration
-
-   .. code-block:: bash
-
-      $ cmake ..
-
-4) Build the docs
-
-   .. code-block:: bash
-
-      $ cmake --build docs
-
-5) Sphinx HTML Documentation builds to:
-
-   .. code-block:: bash
-
-      tardigrade_error_tools/build/docs/sphinx/html/index.html
-
-6) Display docs
-
-   .. code-block:: bash
-
-      $ firefox docs/sphinx/html/index.html &
-
-7) While the Sphinx API is still a WIP, try the doxygen API
-
-   .. code-block:: bash
-
-      $ firefox docs/doxygen/html/index.html &
 
 *****************
 Build the library
@@ -167,28 +122,7 @@ A python interface to the ``tardigrade_error_tools`` C++ routines is provided. A
 libraries have been built, they can be linked so that they can be called with
 python.
 
-sstelmo
-=======
-
-1) Build the libraries
-
-   .. code-block:: bash
-
-      $ pwd
-      /path/to/tardigrade_error_tools/build
-      $ cmake --build . --target all
-
-2) Activate a [W-13 Python Environment](https://xcp-confluence.lanl.gov/display/PYT/The+W-13+Python+3+environment)
-
-   .. code-block:: bash
-
-      $ sv3r
-
-3) in the ``src/python`` directory build the interface using ``cython``
-
-   .. code-block:: bash
-
-      $ python setup.py build_ext --inplace
+TODO
 
 *********
 Use cases
