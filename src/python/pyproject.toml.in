@@ -3,7 +3,7 @@ requires = ["setuptools>=6.2", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tardigrade_error_tools"
+name = "@PROJECT_NAME@"
 authors = [
     {name = "Nathan Miller", email = "Nathan.A.Miller@colorado.edu"},
     {name = "Kyle Brindley", email = "kbrindley@lanl.gov" },
@@ -22,16 +22,16 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["tardigrade_error_tools", "tardigrade_error_tools.tests"]
+packages = ["@PROJECT_NAME@", "@PROJECT_NAME@.tests"]
 zip-safe = false
 
 [project.urls]
-homepage = "https://github.com/UCBoulder/tardigrade_error_tools"
-repository = "https://github.com/UCBoulder/tardigrade_error_tools"
+homepage = "https://github.com/UCBoulder/@PROJECT_NAME@"
+repository = "https://github.com/UCBoulder/@PROJECT_NAME@"
 
 [tool.setuptools_scm]
 root = "@PROJECT_SOURCE_DIR@"
-write_to = "@PROJECT_BINARY_DIR@/@PYTHON_SRC_PATH@/_version.py"
+write_to = "@PROJECT_BINARY_DIR@/@PYTHON_SRC_PATH@/@PROJECT_NAME@/_version.py"
 
 [tool.pytest.ini_options]
 markers = ["unittest", "integrationtest", "systemtest"]
