@@ -172,7 +172,7 @@
 
 namespace tardigradeErrorTools{
 
-    void replaceAll(std::string& str, const std::string& from, const std::string& to);
+    inline void replaceAll(std::string& str, const std::string& from, const std::string& to);
 
     /**
       * A single node in the linked list chain. Contains three pieces of information:
@@ -214,16 +214,16 @@ namespace tardigradeErrorTools{
             Node(std::string functionName, std::string error):functionName(functionName), error(error){
             }
 
-            void addNext(Node *newNode);
+            inline void addNext(Node *newNode);
 
-            void addNext( std::unique_ptr< Node > &newNode );
+            inline void addNext( std::unique_ptr< Node > &newNode );
 
-            void print( const bool header = true );
+            inline void print( const bool header = true );
     };
 
-    void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth = 0);
+    inline void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth = 0);
 
-    void printNestedExceptions( const std::exception &e, std::string message = "" );
+    inline void printNestedExceptions( const std::exception &e, std::string message = "" );
 
 }
 
