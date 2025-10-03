@@ -6,7 +6,27 @@ Changelog
 #########
 
 ******************
-0.9.6 (unreleased)
+0.9.8 (unreleased)
+******************
+
+Internal Changes
+================
+- Added inline to the functions to help with compiling header online libraries (:pull:`32`). By `Nathan Miller`_.
+
+******************
+0.9.7 (05-05-2025)
+******************
+
+Bug Fixes
+=========
+- Corrected the pyproject file and added the missing MANIFEST.in file (:pull:`30`). By `Nathan Miller`_.
+
+Release
+=======
+- Released version 0.9.7 (:pull:`31`). By `Nathan Miller`_.
+
+******************
+0.9.6 (05-01-2025)
 ******************
 
 Bug Fixes
@@ -16,6 +36,10 @@ Bug Fixes
 Internal Changes
 ================
 - Added the source file to the install (:pull:`28`). By `Nathan Miller`_.
+
+Release
+=======
+- Released version 0.9.6 (:pull:`29`). By `Nathan Miller`_.
 
 ******************
 0.9.5 (04-29-2025)
