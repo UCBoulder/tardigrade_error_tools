@@ -18,6 +18,17 @@
 #include<sstream>
 #include<stdexcept>
 
+#ifdef TARDIGRADE_HEADER_ONLY
+    /*!
+        \brief Set TARDIGRADE_OPTIONAL_INLINE to inline
+    */
+    #define TARDIGRADE_OPTIONAL_INLINE inline
+#else
+    /*!
+        \brief Set TARDIGRADE_OPTIONAL_INLINE to nothing
+    */
+    #define TARDIGRADE_OPTIONAL_INLINE
+#endif
 
 /*!
     \brief Formatting of each line of the stacktrace
@@ -172,7 +183,7 @@
 
 namespace tardigradeErrorTools{
 
-    inline void replaceAll(std::string& str, const std::string& from, const std::string& to);
+    void TARDIGRADE_OPTIONAL_INLINE replaceAll(std::string& str, const std::string& from, const std::string& to);
 
     /**
       * A single node in the linked list chain. Contains three pieces of information:
@@ -214,16 +225,16 @@ namespace tardigradeErrorTools{
             Node(std::string functionName, std::string error):functionName(functionName), error(error){
             }
 
-            inline void addNext(Node *newNode);
+            void TARDIGRADE_OPTIONAL_INLINE addNext(Node *newNode);
 
-            inline void addNext( std::unique_ptr< Node > &newNode );
+            void TARDIGRADE_OPTIONAL_INLINE addNext( std::unique_ptr< Node > &newNode );
 
-            inline void print( const bool header = true );
+            void TARDIGRADE_OPTIONAL_INLINE print( const bool header = true );
     };
 
-    inline void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth = 0);
+    void TARDIGRADE_OPTIONAL_INLINE captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth = 0);
 
-    inline void printNestedExceptions( const std::exception &e, std::string message = "" );
+    void TARDIGRADE_OPTIONAL_INLINE printNestedExceptions( const std::exception &e, std::string message = "" );
 
 }
 
