@@ -12,7 +12,7 @@
 
 namespace tardigradeErrorTools{
 
-    inline void replaceAll( std::string& str, const std::string& from, const std::string& to ) {
+    void replaceAll( std::string& str, const std::string& from, const std::string& to ) {
         /*!
          * Replace all instances of 'from' and replace them with 'to' in the string 'str'
          * 
@@ -28,7 +28,7 @@ namespace tardigradeErrorTools{
         }
     }
 
-    inline void Node::addNext( Node *newNode ){
+    void Node::addNext( Node *newNode ){
         /*!
           * Add another layer to the errors
           *
@@ -40,7 +40,7 @@ namespace tardigradeErrorTools{
         return;
     }
 
-    inline void Node::addNext( std::unique_ptr< Node > &newNode ){
+    void Node::addNext( std::unique_ptr< Node > &newNode ){
         /*!
           * Add another layer to the errors
           *
@@ -50,7 +50,7 @@ namespace tardigradeErrorTools{
         return;
     }
 
-    inline void Node::print( const bool header ){
+    void Node::print( const bool header ){
         /*!
           * Print the errors in a list of nodes.
           *
@@ -86,7 +86,7 @@ namespace tardigradeErrorTools{
         return;
     }
 
-    inline void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth ){
+    void captureNestedExceptions( const std::exception &e, std::string &message, std::size_t depth ){
         /*!
          * Capture the nested exceptions starting with the one deepest (closest to the error) and ending
          * with the outermost function call. Users should typically call this function by just passing in the
@@ -111,7 +111,7 @@ namespace tardigradeErrorTools{
        }
     }
 
-    inline void printNestedExceptions( const std::exception &e, std::string message ){
+    void printNestedExceptions( const std::exception &e, std::string message ){
         /*!
          * Print the nested exceptions starting with the one deepest (closest to the error) and ending
          * with the outermost function call. Users should call this function by just passing in the
