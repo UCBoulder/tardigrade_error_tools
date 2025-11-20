@@ -1,5 +1,5 @@
 breathe>=4.30.0
-cmake>=3.18
+cmake>=3.30
 compilers
 cython
 doxygen>=1.9
