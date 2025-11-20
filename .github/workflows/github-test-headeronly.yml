@@ -56,5 +56,4 @@ jobs:
 #        working-directory: ${{ steps.strings.outputs.build-output-dir }}
         run: |
           conda activate test-environment
-          cd build
-          ctest -V
+          ctest --test-dir build -V
