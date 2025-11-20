@@ -1,3 +1,4 @@
+boa
 breathe>=4.30.0
 cmake>=3.30
 compilers
@@ -6,8 +7,6 @@ doxygen>=1.9
 eigen>=3.3.7
 libboost-python-devel>=1.82
 make
-# TODO: Remove mamba after tracing conda issue: https://re-git.lanl.gov/aea/material-models/tardigrade_error_tools/-/issues/11
-mamba
 pip
 pytest
 pytest-cov
