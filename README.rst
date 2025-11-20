@@ -26,27 +26,11 @@ Developers
 Dependencies
 ************
 
-Executables
-===========
-
-* CMake >= 3.14
-* Doxygen >= 1.8.5
-
-Python Modules (for documentation)
-==================================
-
-* Sphinx >= 3.0.4
-* Breathe >= 4.30.0
-* sphinx\_rtd\_theme >= 0.4.3
-
-For convenience, the minimal Python environment requirements for the
-documentation build are included in ``environment.txt``. A minimal anaconda
-environment for building the documentation can be created from an existing
-anaconda installation with the following commands.
+The developer dependencies are found in ``environment.yml``.
 
 .. code-block:: bash
 
-   $ conda create --file environment.txt
+   $ conda env create --name tardigrade_error_tools-dev --file environment.yml
 
 **************************
 Building the documentation
@@ -68,8 +52,9 @@ Follow the steps for building the documentation and pick up below.
    .. code-block:: bash
 
       $ pwd
-      /path/to/tardigrade_error_tools/build
-      $ cmake --build src/cpp
+      /path/to/tardigrade_error_tools
+      $ cmake -S . -B build
+      $ cmake --build build --target tardigrade_error_tools
 
 The library can be used as a header-only library by defining the pre-processor
 variable ``TARDIGRADE_HEADER_ONLY``. This can be helpful for code optimization
@@ -80,8 +65,9 @@ Both of these variable can be independently accessed through cmake via
    .. code-block:: back
 
       $ pwd
-      /path/to/tardigrade_error_tools/build
-      $ cmake --build src/cpp -DTARDIGRADE_HEADER_ONLY=ON -DTARDIGRADE_ERROR_TOOLS_OPT=ON
+      /path/to/tardigrade_error_tools
+      $ cmake -S . -B build
+      $ cmake --build build --target tardigrade_error_tools -DTARDIGRADE_HEADER_ONLY=ON -DTARDIGRADE_ERROR_TOOLS_OPT=ON
 
 *******************
 Install the library
@@ -94,25 +80,23 @@ Build the entire before performing the installation.
    .. code-block:: bash
 
       $ pwd
-      /path/to/tardigrade_error_tools/build
-      $ cmake --build . --target all
+      /path/to/tardigrade_error_tools
+      $ cmake -S . -B build
+      $ cmake --build build --target all
 
 5) Install the library
 
    .. code-block:: bash
 
       $ pwd
-      /path/to/tardigrade_error_tools/build
-      $ cmake --install . --prefix path/to/root/install
+      /path/to/tardigrade_error_tools
+      $ cmake --install build --prefix path/to/root/install
 
       # Example local user (non-admin) Linux install
-      $ cmake --install . --prefix /home/$USER/.local
+      $ cmake --install build --prefix /home/$USER/.local
 
-      # Example install to conda environment
-      $ cmake --install . --prefix path/to/conda/environment/
-
-      # Example install to W-13 CI/CD conda environment performed by CI/CD institutional account
-      $ cmake --install . --prefix /projects/aea_compute/release
+      # Example install to an active conda environment
+      $ cmake --install build --prefix $CONDA_PREFIX
 
 *****************************
 Building the python interface
