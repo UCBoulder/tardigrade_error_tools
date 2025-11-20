@@ -1,7 +1,7 @@
 {% set name = "tardigrade_error_tools" %}
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: {{ VERSION }}
 
 source:
   path: '..'
@@ -9,7 +9,7 @@ source:
 build:
   number: 0
   script_env:
-    - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
+    - SETUPTOOLS_SCM_PRETEND_VERSION={{ VERSION }}
   script:
     - set -x
     # Build and install c++ libraries
