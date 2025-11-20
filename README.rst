@@ -41,6 +41,13 @@ Building the documentation
    **API Health Note**: The Sphinx API docs are a work-in-progress. The doxygen
    API is much more useful
 
+.. code-block:: bash
+
+   $ pwd
+   /path/to/tardigrade_error_tools
+   $ cmake -S . -B build
+   $ cmake --build build --target Doxygen Sphinx
+
 *****************
 Build the library
 *****************
@@ -69,11 +76,23 @@ Both of these variable can be independently accessed through cmake via
       $ cmake -S . -B build
       $ cmake --build build --target tardigrade_error_tools -DTARDIGRADE_HEADER_ONLY=ON -DTARDIGRADE_ERROR_TOOLS_OPT=ON
 
+****************
+Test the library
+****************
+
+.. code-block:: back
+
+   $ pwd
+   /path/to/tardigrade_error_tools
+   $ cmake -S . -B build
+   $ cmake --build build --target tardigrade_error_tools test_tardigrade_error_tools
+   $ ctest --test-dir build
+
 *******************
 Install the library
 *******************
 
-Build the entire before performing the installation.
+Build the entire project before performing the installation.
 
 4) Build the entire project
 
@@ -97,6 +116,14 @@ Build the entire before performing the installation.
 
       # Example install to an active conda environment
       $ cmake --install build --prefix $CONDA_PREFIX
+
+***********************
+Build the Conda package
+***********************
+
+.. code-block:: bash
+
+   $ VERSION=$(python -m setuptools_scm) conda mambabuild recipe --no-anaconda-upload -c conda-forge --output-folder conda-bld
 
 *****************************
 Building the python interface
