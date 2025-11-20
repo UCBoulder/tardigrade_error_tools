@@ -1,18 +1,7 @@
+{% set name = "tardigrade_error_tools" %}
 package:
-  name: tardigrade_error_tools
-  # TODO: setup and use pyproject.toml and a Conda build Jinja template
-  version: {{ VERSION }}
-
-about:
-  home: https://github.com/UCBoulder/tardigrade_error_tools
-  license: BSD-3-Clause
-  license_file: LICENSE
-  summary: 'A collection of tools used for error handling. '
-  description: |
-    tardigrade-error-tools (C20048 Tardigrade) A collection of tools used for error handling. These tools provide a
-    linked list class which can help a user both understand where an error happened and also help the developer to
-    correct for the errors.
-  dev_url: https://github.com/UCBoulder/tardigrade_error_tools
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   path: '..'
@@ -20,50 +9,68 @@ source:
 build:
   number: 0
   script_env:
-    - SETUPTOOLS_SCM_PRETEND_VERSION={{ VERSION }}
+    - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script:
-    - mkdir build-package
-    - cd build-package
-    - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib
-    - cmake --build . --target tardigrade_error_tools
-    - cmake --install . --prefix $PREFIX
-  ignore_run_exports:
-    - python_abi
+    - set -x
+    # Build and install c++ libraries
+    - cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib
+    - cmake --build build --target tardigrade_error_tools tardigrade_error_tools_PYTHON
+    - cmake --install build --prefix ${PREFIX}
+    # Build and install Conda package
+  skip: true  # [win]
 
 requirements:
-  host:
+  build:
     - {{ compiler('cxx') }}
-    - libgcc-ng {{ libstdcxx }}     # [linux]
-    - libstdcxx-ng {{ libstdcxx }}  # [linux]
-    - python
-    - setuptools_scm >=6.2
+    - {{ stdlib('cxx') }}
+    - make
     - cmake >=3.30
+  host:
+    - python {{ python }}
+    - breathe >=4.3.0
+    - sphinx >=3.0.4
+    - sphinx_rtd_theme >=0.4.3
+    - sphinxcontrib-bibtex
+    - python-build
+    - pip
+    - cython
+    - setuptools >=62
+    - setuptools_scm >=6.2
     - eigen >=3.3.7
-    - libboost-python-devel >=1.82  # TODO: Separate the package/test configuration to make BOOST an optional build dependency
-    - doxygen  # TODO: Separate the package/documentation configuration to make Doxygen an optional build dependency
-    - sphinx  # TODO: Separate the package/documentation configuration to make Sphinx an optional build dependency
+    - libboost-python-devel >=1.82
+    - doxygen
   run:
-    - eigen >=3.3.7
-    - libgcc-ng     # [linux]
-    - libstdcxx-ng  # [linux]
-    - libcxx        # [osx]
+    - python
 
 test:
   requires:
     - {{ compiler('cxx') }}
-    - {{ pin_compatible('libgcc-ng') }}     # [linux]
-    - {{ pin_compatible('libstdcxx-ng') }}  # [linux]
+    - pytest
+    - pytest-xdist
+    - make
     - cmake >=3.30
-    - libboost-python-devel >=1.82  # TODO: Separate the package/test configuration to make BOOST an optional build dependency
-    - doxygen  # TODO: Separate the package/documentation configuration to make Doxygen an optional build dependency
-    - sphinx  # TODO: Separate the package/documentation configuration to make Sphinx an optional build dependency
+    - libboost-python-devel >=1.82
+    - doxygen
+    - sphinx >=3.0.4
   source_files:
     - CMakeLists.txt
     - src/cpp/tests/CMakeLists.txt
     - src/cpp/tests/test_tardigrade_error_tools.cpp
   commands:
-    - mkdir build-package
-    - cd build-package
-    - cmake .. -DCMAKE_BUILD_TYPE=conda-test -DCMAKE_INSTALL_LIBDIR=lib
-    - cmake --build . --target test_tardigrade_error_tools
-    - ctest -R test_tardigrade_error_tools
+    - set -x
+    - cmake -S . -B build -DCMAKE_BUILD_TYPE=conda-test -DCMAKE_INSTALL_LIBDIR=lib
+    - cmake --build build --target all --verbose --parallel 4
+    - ctest --test-dir build --output-on-failure -R 'test_' --parallel 4
+    - cd $SP_DIR/$PKG_NAME
+    - pytest
+
+about:
+  home: https://github.com/UCBoulder/tardigrade_error_tools
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: 'A collection of tools used for error handling. '
+  description: |
+    tardigrade-error-tools A collection of tools used for error handling. These tools provide a
+    linked list class which can help a user both understand where an error happened and also help the developer to
+    correct for the errors.
+  dev_url: https://github.com/UCBoulder/tardigrade_error_tools
