@@ -26,11 +26,11 @@ Developers
 Dependencies
 ************
 
-The developer dependencies are found in ``environment.yml``.
+The developer dependencies are found in ``environment.txt``.
 
 .. code-block:: bash
 
-   $ conda env create --name tardigrade_error_tools-dev --file environment.yml
+   $ conda create --name tardigrade_error_tools-dev --file environment.txt
 
 **************************
 Building the documentation
