@@ -1,8 +1,9 @@
 {% set name = "tardigrade_error_tools" %}
+{% set version = "0.0.0" %}
 
 package:
   name: {{ name|lower }}
-  version: {{ VERSION }}
+  version: {{ version }}
 
 source:
   path: '..'
@@ -10,11 +11,11 @@ source:
 build:
   number: 0
   script_env:
-    - SETUPTOOLS_SCM_PRETEND_VERSION={{ VERSION }}
+    - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script:
     - set -x
     # Build and install c++ libraries
-    - cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib
+    - cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib
     - cmake --build build --target tardigrade_error_tools tardigrade_error_tools_PYTHON
     - cmake --install build --prefix ${PREFIX}
     # Build and install Conda package
