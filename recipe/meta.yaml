@@ -36,8 +36,8 @@ requirements:
     - python-build
     - pip
     - cython
-    - setuptools >=62
-    - setuptools_scm >=6.2
+    - setuptools >=77
+    - setuptools_scm >=8
     - eigen >=3.3.7
     - libboost-python-devel >=1.82
     - doxygen
