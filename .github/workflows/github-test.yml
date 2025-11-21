@@ -34,8 +34,6 @@ jobs:
             channel-priority: true
             auto-activate-base: false
             activate-environment: "test-environment"
-      - name: check solution
-        run: conda env export
       - name: Set reusable strings
         id: strings
         shell: bash
