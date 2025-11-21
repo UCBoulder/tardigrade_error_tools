@@ -32,18 +32,14 @@ jobs:
             auto-activate-base: false
             activate-environment: "test-environment"
       - name: check solution
-        run: |
-          conda env export
+        run: conda env export
       - name: Set reusable strings
         id: strings
         shell: bash
-        run: |
-            echo "environment-file=${{ github.workspace }}/conda-build.txt" >> "$GITHUB_OUTPUT"
+        run: echo "environment-file=${{ github.workspace }}/conda-build.txt" >> "$GITHUB_OUTPUT"
       - name: Conda environment
         shell: bash -el {0}
-        run: |
-            conda install --file ${{ steps.strings.outputs.environment-file }} --yes --channel conda-forge
+        run: conda install --file ${{ steps.strings.outputs.environment-file }} --yes --channel conda-forge
       - name: Conda-Build
         shell: bash -el {0}
-        run: |
-            VERSION=$(python -m setuptools_scm) conda mambabuild recipe --channel conda-forge --no-anaconda-upload
+        run: VERSION=$(python -m setuptools_scm) conda mambabuild recipe --channel conda-forge --no-anaconda-upload
