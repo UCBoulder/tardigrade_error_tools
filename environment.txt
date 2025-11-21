@@ -13,7 +13,8 @@ pytest-cov
 pytest-xdist
 python
 python-build
-setuptools_scm>=6.2
+setuptools >=77
+setuptools_scm >=8
 sphinx>=3.0.4
 sphinx_rtd_theme>=0.4.3
 sphinxcontrib-bibtex
