@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
             echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
-            echo "environment-file=${{ github.workspace }}/environment.txt" >> "$GITHUB_OUTPUT"
+            echo "environment-file=${{ github.workspace }}/conda-build.txt" >> "$GITHUB_OUTPUT"
             echo "moose-dir=${{ github.workspace }}/moose-dir" >> "$GITHUB_OUTPUT"
       - name: Conda environment
         shell: bash -el {0}
