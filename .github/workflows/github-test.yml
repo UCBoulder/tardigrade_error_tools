@@ -19,11 +19,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         build_type: [Release]
-        header_only: [OFF, ON]
-        python_bindings: [ON, OFF]
-        config_zip:
-          - header_only
-          - python_bindings
+        config_zip: [ {header_only: OFF, python_bindings: ON}, {header_only: ON, python_bindings: OFF} ]
         tardigrade_opt: [OFF, ON]
     steps:
       - name: Checkout
