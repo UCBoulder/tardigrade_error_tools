@@ -1,14 +1,15 @@
 .. targets-start-do-not-remove
 
+.. _Doxygen: https://www.doxygen.nl/manual/docblocks.html
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _PEP-8: https://www.python.org/dev/peps/pep-0008/
 .. _`gersemi`: https://github.com/BlankSpruce/gersemi
 
 .. targets-end-do-not-remove
 
-############
+########################
 tardigrade\_error\_tools
-############
+########################
 
 *******************
 Project Description
@@ -77,7 +78,7 @@ purposes or if in-lining the code is otherwise important. Additionally, the erro
 handling can be turned off by defining the pre-processor variable ``TARDIGRADE_ERROR_TOOLS_OPT``.
 Both of these variable can be independently accessed through cmake via
 
-   .. code-block:: back
+   .. code-block:: bash
 
       $ pwd
       /path/to/tardigrade_error_tools
@@ -88,7 +89,7 @@ Both of these variable can be independently accessed through cmake via
 Test the library
 ****************
 
-.. code-block:: back
+.. code-block:: bash
 
    $ pwd
    /path/to/tardigrade_error_tools
@@ -213,7 +214,9 @@ When creating branches use one of the following naming conventions. When in doub
 
 reStructured Text
 =================
-`Sphinx`_ reads in docstrings and other special portions of the code as reStructured text. Developers should follow styles in this `Sphinx style guide<https://documentation-style-guide-sphinx.readthedocs.io/en/latest/style-guide.html#>`_.
+`Sphinx`_ reads in docstrings and other special portions of the code as reStructured text. Developers should follow
+styles in this `Sphinx style guide
+<https://documentation-style-guide-sphinx.readthedocs.io/en/latest/style-guide.html#>`_.
 
 Style Guide
 ===========
