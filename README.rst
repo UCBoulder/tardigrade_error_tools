@@ -1,9 +1,3 @@
-.. targets-start-do-not-remove
-
-.. _`gersemi`: https://github.com/BlankSpruce/gersemi
-
-.. targets-end-do-not-remove
-
 ############
 tardigrade\_error\_tools
 ############

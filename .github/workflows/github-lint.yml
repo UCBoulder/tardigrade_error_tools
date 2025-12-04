@@ -32,13 +32,9 @@ jobs:
             channel-priority: true
             auto-activate-base: false
             activate-environment: "lint-environment"
-      - name: Set reusable strings
-        id: strings
-        shell: bash
-        run: echo "environment-file=${{ github.workspace }}/environment.txt" >> "$GITHUB_OUTPUT"
       - name: Conda environment
         shell: bash -el {0}
-        run: conda install --file ${{ steps.strings.outputs.environment-file }} --yes --channel conda-forge
+        run: conda install --file environment.txt --yes --channel conda-forge
       - name: CMake linter
         shell: bash -el {0}
         run: gersemi CMakeLists.txt src/ docs/ --check --diff
