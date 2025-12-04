@@ -40,4 +40,5 @@ jobs:
         shell: bash -el {0}
         run: conda install --file ${{ steps.strings.outputs.environment-file }} --yes --channel conda-forge
       - name: CMake linter
+        shell: bash -el {0}
         run: gersemi CMakeLists.txt src/ docs/ --check
