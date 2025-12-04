@@ -31,7 +31,7 @@ jobs:
             channels: conda-forge,defaults
             channel-priority: true
             auto-activate-base: false
-            activate-environment: "test-environment"
+            activate-environment: "lint-environment"
       - name: Set reusable strings
         id: strings
         shell: bash
@@ -41,4 +41,4 @@ jobs:
         run: conda install --file ${{ steps.strings.outputs.environment-file }} --yes --channel conda-forge
       - name: CMake linter
         shell: bash -el {0}
-        run: gersemi CMakeLists.txt src/ docs/ --check
+        run: gersemi CMakeLists.txt src/ docs/ --check --diff
