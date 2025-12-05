@@ -59,6 +59,10 @@ elseif(cmake_build_type_lower STREQUAL "conda-test")
     endif()
 endif()
 
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
+    set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+endif()
+
 # Get version number from Git
 set(VERSION_UPDATE_FROM_GIT True)
 if(${not_conda_test} STREQUAL "true")
@@ -90,15 +94,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lrt -O3")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
 
 # Enable CTest
 enable_testing()
 
 #================================================================================================= FIND DEPENDENCIES ===
-# Set build type checks
-string(TOLOWER "${CMAKE_BUILD_TYPE}" cmake_build_type_lower)
 
 #=============================================================================================== ADD PROJECT TARGETS ===
 # MUST COME AFTER DEPENDENCY LOCATING
