@@ -102,6 +102,10 @@ enable_testing()
 
 #================================================================================================= FIND DEPENDENCIES ===
 
+#=============================================================================================== FIND PROGRAMS
+
+find_program(CLANG_FORMAT_EXECUTABLE NAMES clang-format REQUIRED)
+
 #=============================================================================================== ADD PROJECT TARGETS ===
 # MUST COME AFTER DEPENDENCY LOCATING
 # Add project source directories
