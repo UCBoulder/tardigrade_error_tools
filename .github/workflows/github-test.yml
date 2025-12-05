@@ -41,6 +41,7 @@ jobs:
         shell: bash -el {0}
         run: cmake -S . -B build -DTARDIGRADE_ERROR_TOOLS_BUILD_PYTHON_BINDINGS=${{ matrix.config_zip.python_bindings }} -DTARDIGRADE_HEADER_ONLY=${{ matrix.config_zip.header_only }} -DTARDIGRADE_ERROR_TOOLS_OPT=${{ matrix.tardigrade_opt }}
       - name: clang-tidy Lint
+        if: ${{ matrix.os == ubuntu-latest}}
         shell: bash -el {0}
         run: run-clang-tidy -config-file=.clang-tidy -header-filter=*.h -p build
       - name: Build
