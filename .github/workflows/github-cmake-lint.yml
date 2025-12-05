@@ -1,4 +1,4 @@
-name: Lints on pull request
+name: Lints the cmake files on pull request
 run-name: ${{ github.actor }} is linting a pull request
 on:
   pull_request:
