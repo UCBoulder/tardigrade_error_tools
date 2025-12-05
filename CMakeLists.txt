@@ -11,18 +11,22 @@ set(CYTHON_TARGET ${PROJECT_NAME}_CYTHON)
 set(CMAKE_SRC_PATH "src/cmake")
 
 # Add a cached variable to build the python interface
-set(TARDIGRADE_ERROR_TOOLS_BUILD_PYTHON_BINDINGS ON CACHE BOOL "Boolean flag for whether the python bindings should be built")
+set(TARDIGRADE_ERROR_TOOLS_BUILD_PYTHON_BINDINGS
+    ON
+    CACHE BOOL
+    "Boolean flag for whether the python bindings should be built"
+)
 
 set(TARDIGRADE_HEADER_ONLY "Set this to true to build the library as a header-only project" CACHE BOOL False)
 
 if(${TARDIGRADE_HEADER_ONLY})
-  add_compile_definitions(TARDIGRADE_HEADER_ONLY)
-  message("BUILDING IN HEADER ONLY MODE")
+    add_compile_definitions(TARDIGRADE_HEADER_ONLY)
+    message("BUILDING IN HEADER ONLY MODE")
 endif()
 
 if(${TARDIGRADE_ERROR_TOOLS_OPT})
-  add_compile_definitions(TARDIGRADE_ERROR_TOOLS_OPT)
-  message(WARNING "BUILDING OPTIMIZED ERROR TOOLS. NO ERRORS WILL BE CAUGHT")
+    add_compile_definitions(TARDIGRADE_ERROR_TOOLS_OPT)
+    message(WARNING "BUILDING OPTIMIZED ERROR TOOLS. NO ERRORS WILL BE CAUGHT")
 endif()
 
 # Add the cmake folder to locate project CMake module(s)
@@ -43,13 +47,14 @@ if(cmake_build_type_lower STREQUAL "release")
 elseif(cmake_build_type_lower STREQUAL "conda-test")
     set(upstream_required "REQUIRED")
     set(not_conda_test "false")
-    if (NOT ${TARDIGRADE_HEADER_ONLY})
+    if(NOT ${TARDIGRADE_HEADER_ONLY})
         # Find the installed project library
-        find_file(installed_linked_library
-                  "lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}"
-                  PATHS "$ENV{CONDA_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
-                  NO_CACHE
-                  REQUIRED)
+        find_file(
+            installed_linked_library
+            "lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}"
+            PATHS "$ENV{CONDA_PREFIX}/${CMAKE_INSTALL_LIBDIR}" NO_CACHE
+            REQUIRED
+        )
         set(project_link_string ${installed_linked_library})
     endif()
 endif()
@@ -57,14 +62,16 @@ endif()
 # Get version number from Git
 set(VERSION_UPDATE_FROM_GIT True)
 if(${not_conda_test} STREQUAL "true")
-    if (DEFINED ENV{PREFIX})
+    if(DEFINED ENV{PREFIX})
         set(Python_ROOT_DIR "$ENV{PREFIX}/bin")
     endif()
     set(Python_FIND_STRATEGY LOCATION)
     find_package(Python COMPONENTS Interpreter REQUIRED)
-    execute_process(COMMAND ${Python_EXECUTABLE} -m setuptools_scm
-                            OUTPUT_VARIABLE ${PROJECT_NAME}_VERSION_STRING_FULL
-                    OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(
+        COMMAND ${Python_EXECUTABLE} -m setuptools_scm
+        OUTPUT_VARIABLE ${PROJECT_NAME}_VERSION_STRING_FULL
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
     string(REGEX MATCH "[0-9]+\.[0-9]+\.[0-9]+" ${PROJECT_NAME}_VERSION ${${PROJECT_NAME}_VERSION_STRING_FULL})
     if(${${PROJECT_NAME}_VERSION} STREQUAL "")
         set(${PROJECT_NAME}_VERSION 0.0.0)
@@ -82,7 +89,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lrt -O3")
 endif()
 
@@ -119,23 +126,30 @@ endif()
 #==================================================================================== SETUP INSTALLATION CMAKE FILES ===
 if(${not_conda_test} STREQUAL "true")
     include(CMakePackageConfigHelpers)
-    write_basic_package_version_file("${PROJECT_NAME}ConfigVersion.cmake"
-                                     VERSION ${PROJECT_VERSION}
-                                     COMPATIBILITY SameMajorVersion)
+    write_basic_package_version_file(
+        "${PROJECT_NAME}ConfigVersion.cmake"
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY SameMajorVersion
+    )
     configure_package_config_file(
-      "${PROJECT_SOURCE_DIR}/${CMAKE_SRC_PATH}/Config.cmake.in"
-      "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-      INSTALL_DESTINATION
-      ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+        "${PROJECT_SOURCE_DIR}/${CMAKE_SRC_PATH}/Config.cmake.in"
+        "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake
+    )
 
     # CMake won't build the targets for local builds of upstream projects
     if(cmake_build_type_lower STREQUAL release)
-        install(EXPORT ${PROJECT_NAME}_Targets
-                FILE ${PROJECT_NAME}Targets.cmake
-                DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+        install(
+            EXPORT ${PROJECT_NAME}_Targets
+            FILE ${PROJECT_NAME}Targets.cmake
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake
+        )
     endif()
 
-    install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-                  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+    install(
+        FILES
+            "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+            "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake
+    )
 endif()

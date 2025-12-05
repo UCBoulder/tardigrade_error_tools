@@ -1,6 +1,15 @@
-############
+.. targets-start-do-not-remove
+
+.. _Doxygen: https://www.doxygen.nl/manual/docblocks.html
+.. _Sphinx: https://www.sphinx-doc.org/en/master/
+.. _PEP-8: https://www.python.org/dev/peps/pep-0008/
+.. _`gersemi`: https://github.com/BlankSpruce/gersemi
+
+.. targets-end-do-not-remove
+
+########################
 tardigrade\_error\_tools
-############
+########################
 
 *******************
 Project Description
@@ -69,7 +78,7 @@ purposes or if in-lining the code is otherwise important. Additionally, the erro
 handling can be turned off by defining the pre-processor variable ``TARDIGRADE_ERROR_TOOLS_OPT``.
 Both of these variable can be independently accessed through cmake via
 
-   .. code-block:: back
+   .. code-block:: bash
 
       $ pwd
       /path/to/tardigrade_error_tools
@@ -80,7 +89,7 @@ Both of these variable can be independently accessed through cmake via
 Test the library
 ****************
 
-.. code-block:: back
+.. code-block:: bash
 
    $ pwd
    /path/to/tardigrade_error_tools
@@ -168,3 +177,103 @@ This macro evaluates the provided expression and will not be evaluated if ``TARD
    .. code-block:: c++
 
       TARDIGRADE_ERROR_TOOLS_EVAL( myFirstExpression; mySecondExpression; )
+
+***********************
+Contribution Guidelines
+***********************
+
+.. contribution-start-do-not-remove
+
+Git Commit Message
+==================
+
+Begin Git commit messages with one of the following headings:
+
+* BUG: bug fix
+* DOC: documentation
+* FEAT: feature
+* MAINT: maintenance
+* TST: tests
+* REL: release
+* WIP: work in progress
+
+For example:
+
+.. code-block:: bash
+
+   git commit -m "DOC: adds documentation for feature"
+
+Git Branch Names
+================
+
+When creating branches use one of the following naming conventions. When in doubt use ``feature/<description>``.
+
+* ``bugfix/\<description>``
+* ``feature/\<description>``
+* ``release/\<description>``
+
+reStructured Text
+=================
+`Sphinx`_ reads in docstrings and other special portions of the code as reStructured text. Developers should follow
+styles in this `Sphinx style guide
+<https://documentation-style-guide-sphinx.readthedocs.io/en/latest/style-guide.html#>`_.
+
+Style Guide
+===========
+
+This project uses the `gersemi`_ CMake linter. The CI style guide check runs the following command
+
+.. code-block:
+
+   $ gersemi CMakeLists.txt src/ docs/ --check
+
+and any automatic fixes may be reviewed and then applied by developers with the following commands
+
+.. code-block:
+
+   $ gersemi CMakeLists.txt src/ docs/ --diff
+   $ gersemi CMakeLists.txt src/ docs/ --in-place
+
+This project does not yet have a full c++ style guide. Generally, wherever a style
+can't be inferred from surrounding code this project falls back to `PEP-8`_-like
+styles. There are two notable exceptions to the notional PEP-8 fall back:
+
+1. `Doxygen`_ style docstrings are required for automated, API from source documentation.
+2. This project prefers expansive whitespace surrounding parentheses, braces, and
+   brackets.
+
+   * No leading space between a function and the argument list.
+   * One space following an open paranthesis ``(``, brace ``{``, or bracket
+     ``[``
+   * One space leading a close paranthesis ``)``, brace ``}``, or bracket ``]``
+
+An example of the whitespace style:
+
+.. code-block:: bash
+
+   my_function( arg1, { arg2, arg3 }, arg4 );
+
+The following ``sed`` commands may be useful for updating white space, but must
+be used with care. The developer is recommended to use a unique git commit
+between each command with a corresponding review of the changes and a unit test
+run.
+
+* Trailing space for open paren/brace/bracket
+
+  .. code-block:: bash
+
+     sed -i 's/\([({[]\)\([^ ]\)/\1 \2/g' <list of files to update>
+
+* Leading space for close paren/brace/bracket
+
+  .. code-block:: bash
+
+     sed -i 's/\([^ ]\)\([)}\]]\)/\1 \2/g' <list of files to update>
+
+* White space between adjacent paren/brace/bracket
+
+  .. code-block:: bash
+
+     sed -i 's/\([)}\]]\)\([)}\]]\)/\1 \2/g' <list of files to update>
+
+.. contribution-end-do-not-remove
