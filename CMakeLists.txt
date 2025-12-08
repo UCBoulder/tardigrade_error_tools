@@ -159,3 +159,23 @@ if(${not_conda_test} STREQUAL "true")
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake
     )
 endif()
+
+#================================================================================== SETUP CLANG FORMATTING TARGETS ===
+
+file(GLOB_RECURSE CLANG_FORMAT_SOURCE_FILES "${CPP_SRC_PATH}/*.cpp" "${CPP_SRC_PATH}/*.h") 
+message("CLANG_FORMAT_SOURCE_FILES: ${CLANG_FORMAT_SOURCE_FILES}")
+
+add_custom_target(check-cpp-format
+    COMMAND ${CLANG_FORMAT_EXECUTABLE} -style=file --dry-run -Werror ${CLANG_FORMAT_SOURCE_FILES}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Check the C++ code format with clang-format"
+)
+set_target_properties(check-cpp-format PROPERTIES EXCLUDE_FROM_ALL TRUE)
+
+add_custom_target(format
+    EXCLUDE_FROM_ALL
+    COMMAND clang-format -style=file -i ${CLANG_FORMAT_SOURCE_FILES}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Format the C++ code with clang-format"
+)
+set_target_properties(format PROPERTIES EXCLUDE_FROM_ALL TRUE)
