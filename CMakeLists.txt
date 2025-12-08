@@ -173,7 +173,6 @@ add_custom_target(check-cpp-format
 set_target_properties(check-cpp-format PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
 add_custom_target(format
-    EXCLUDE_FROM_ALL
     COMMAND clang-format -style=file -i ${CLANG_FORMAT_SOURCE_FILES}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMENT "Format the C++ code with clang-format"
