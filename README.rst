@@ -4,6 +4,8 @@
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _PEP-8: https://www.python.org/dev/peps/pep-0008/
 .. _`gersemi`: https://github.com/BlankSpruce/gersemi
+.. _`clang-tidy`: https://clang.llvm.org/extra/clang-tidy/
+.. _`clang-format`: https://clang.llvm.org/docs/ClangFormat.html
 
 .. targets-end-do-not-remove
 
@@ -234,8 +236,42 @@ and any automatic fixes may be reviewed and then applied by developers with the 
    $ gersemi CMakeLists.txt src/ docs/ --diff
    $ gersemi CMakeLists.txt src/ docs/ --in-place
 
-This project does not yet have a full c++ style guide. Generally, wherever a style
-can't be inferred from surrounding code this project falls back to `PEP-8`_-like
+This project enforces its style using `clang-tidy`_ and `clang-format`_ as configured with the
+`.clang-format` and `.clang-tidy` files in the root directory. The formatting of the project can be
+checked using `clang-tidy`_ by first configuring the project using
+
+.. code-block:
+
+   $ cmake -S . -B build ... -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+where `...` are the other configuration flags specified. After this clang-tidy can be run on the
+full project from the source directory via
+
+.. code-block:
+
+   $ run-clang-tidy -config-file=.clang-tidy -header-filter=*.h -p build
+
+.. CAUTION::
+    Commit all changes prior to running the clang tidy command. This will edit all source files.
+
+The formatting can be checked using `clang-format`_ by running
+
+.. code-block:
+
+   $ cmake -S . -B build --target check-cpp-format
+
+which will indicate if the formatting is correct. The files can be re-formatted to match the
+style guidance by running
+
+.. code-block
+
+   $ cmake -S . -B build --target format
+
+.. CAUTION::
+    Commit all changes prior to running the format command. This will edit all source files.
+
+If the style is not constrained by the above, it should be inferred by the surrounding code.
+Wherever a style can't be inferred from surrounding code this project falls back to `PEP-8`_-like
 styles. There are two notable exceptions to the notional PEP-8 fall back:
 
 1. `Doxygen`_ style docstrings are required for automated, API from source documentation.
