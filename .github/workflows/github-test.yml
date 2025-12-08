@@ -45,7 +45,7 @@ jobs:
         shell: bash -el {0}
         run: run-clang-tidy -config-file=.clang-tidy -header-filter=*.h -p build
       - name: clang-format Lint
-        if: ${{ matix.os == 'ubuntu-latest' && matrix.tardigrade_opt == "OFF" && matrix.config_zip.header_only == "ON" }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.tardigrade_opt == "OFF" && matrix.config_zip.header_only == "ON" }}
         shell: bash -el {0}
         run: cmake --build build check-cpp-format
       - name: Build
