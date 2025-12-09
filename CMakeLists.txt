@@ -171,12 +171,12 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMENT "Check the C++ code format with clang-format"
     )
-    set_target_properties(check-cpp-format PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    set_target_properties(cpp-format-check PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
     add_custom_target(cpp-format
         COMMAND ${CLANG_FORMAT_EXECUTABLE} -style=file -i ${CLANG_FORMAT_SOURCE_FILES_VALUE}
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "Format the C++ code with clang-format"
     )
-    set_target_properties(format-cpp PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    set_target_properties(cpp-format PROPERTIES EXCLUDE_FROM_ALL TRUE)
 endif()
