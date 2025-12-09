@@ -247,70 +247,34 @@ checked using `clang-tidy`_ by first configuring the project using
 where `...` are the other configuration flags specified. After this clang-tidy can be run on the
 full project from the source directory via
 
+.. CAUTION::
+    Commit all changes prior to running the clang tidy command. This will edit all source files.
+
 .. code-block:
 
    $ run-clang-tidy -config-file=.clang-tidy -header-filter=*.h -p build
-
-.. CAUTION::
-    Commit all changes prior to running the clang tidy command. This will edit all source files.
 
 The formatting can be checked using `clang-format`_ by running
 
 .. code-block:
 
    $ cmake -S . -B build ...
-   $ cmake --build build --target check-cpp-format
+   $ cmake --build build --target cpp-format-check
 
 which will indicate if the formatting is correct. The c++ files can be re-formatted to match the
 style guidance by running
 
-.. code-block
-
-   $ cmake --build build --target format-cpp
-
 .. CAUTION::
     Commit all changes prior to running the format command. This will edit all source files.
 
+.. code-block
+
+   $ cmake --build build --target cpp-format
+
 If the style is not constrained by the above, it should be inferred by the surrounding code.
 Wherever a style can't be inferred from surrounding code this project falls back to `PEP-8`_-like
-styles. There are two notable exceptions to the notional PEP-8 fall back:
+styles the exceptions to the notional PEP-8 fall back:
 
 1. `Doxygen`_ style docstrings are required for automated, API from source documentation.
-2. This project prefers expansive whitespace surrounding parentheses, braces, and
-   brackets.
-
-   * No leading space between a function and the argument list.
-   * One space following an open paranthesis ``(``, brace ``{``, or bracket
-     ``[``
-   * One space leading a close paranthesis ``)``, brace ``}``, or bracket ``]``
-
-An example of the whitespace style:
-
-.. code-block:: bash
-
-   my_function( arg1, { arg2, arg3 }, arg4 );
-
-The following ``sed`` commands may be useful for updating white space, but must
-be used with care. The developer is recommended to use a unique git commit
-between each command with a corresponding review of the changes and a unit test
-run.
-
-* Trailing space for open paren/brace/bracket
-
-  .. code-block:: bash
-
-     sed -i 's/\([({[]\)\([^ ]\)/\1 \2/g' <list of files to update>
-
-* Leading space for close paren/brace/bracket
-
-  .. code-block:: bash
-
-     sed -i 's/\([^ ]\)\([)}\]]\)/\1 \2/g' <list of files to update>
-
-* White space between adjacent paren/brace/bracket
-
-  .. code-block:: bash
-
-     sed -i 's/\([)}\]]\)\([)}\]]\)/\1 \2/g' <list of files to update>
 
 .. contribution-end-do-not-remove

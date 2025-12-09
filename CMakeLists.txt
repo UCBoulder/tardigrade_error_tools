@@ -166,14 +166,14 @@ endif()
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     get_property(CLANG_FORMAT_SOURCE_FILES_VALUE GLOBAL PROPERTY CLANG_FORMAT_SOURCE_FILES)
 
-    add_custom_target(check-cpp-format
+    add_custom_target(cpp-format-check
         COMMAND ${CLANG_FORMAT_EXECUTABLE} -style=file --dry-run -Werror ${CLANG_FORMAT_SOURCE_FILES_VALUE}
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMENT "Check the C++ code format with clang-format"
     )
     set_target_properties(check-cpp-format PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
-    add_custom_target(format-cpp
+    add_custom_target(cpp-format
         COMMAND ${CLANG_FORMAT_EXECUTABLE} -style=file -i ${CLANG_FORMAT_SOURCE_FILES_VALUE}
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "Format the C++ code with clang-format"
