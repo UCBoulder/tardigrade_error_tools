@@ -19,8 +19,8 @@ build:
     - cmake --build build --target tardigrade_error_tools tardigrade_error_tools_PYTHON
     - cmake --install build --prefix ${PREFIX}
     # Build and install Conda package
-    - $PYTHON -m pip install build/src/python/dist/$PKG_NAME-$PKG_VERSION.tar.gz --no-deps --ignore-installed -v --no-build-isolation
-    - $PYTHON -m pip show $PKG_NAME
+    - python -m pip install build/src/python/dist/$PKG_NAME-$PKG_VERSION.tar.gz --no-deps --ignore-installed -v --no-build-isolation
+    - python -m pip show $PKG_NAME
   skip: true  # [win]
 
 requirements:
