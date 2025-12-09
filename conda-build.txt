@@ -1,5 +1,4 @@
 boa
 python
-clang-tools
 setuptools >=77
 setuptools_scm >=8

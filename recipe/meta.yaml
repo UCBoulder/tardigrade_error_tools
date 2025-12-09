@@ -28,6 +28,7 @@ requirements:
     - {{ compiler('cxx') }}
     - make
     - cmake >=3.30
+    - clang-tools
   host:
     - python {{ python }}
     - breathe >=4.3.0
