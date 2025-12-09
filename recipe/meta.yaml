@@ -25,26 +25,28 @@ build:
 
 requirements:
   build:
+    - python {{ python }}
     - {{ compiler('cxx') }}
     - make
     - cmake >=3.30
-    - clang-tools
-  host:
-    - python {{ python }}
     - breathe >=4.3.0
+    - clang-tools
+    - cython
+    - doxygen
+    - libboost-python-devel >=1.82
+    - pip
+    - python-build
+    - setuptools >=77
+    - setuptools_scm >=8
     - sphinx >=3.0.4
     - sphinx_rtd_theme >=0.4.3
     - sphinxcontrib-bibtex
-    - python-build
-    - pip
-    - cython
-    - setuptools >=77
-    - setuptools_scm >=8
+  host:
+    - python {{ python }}
     - eigen >=3.3.7
-    - libboost-python-devel >=1.82
-    - doxygen
   run:
     - python
+    - eigen >=3.3.7
 
 test:
   requires:
