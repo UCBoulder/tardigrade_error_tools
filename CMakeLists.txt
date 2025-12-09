@@ -105,6 +105,7 @@ enable_testing()
 #=============================================================================================== FIND PROGRAMS
 
 find_program(CLANG_FORMAT_EXECUTABLE NAMES clang-format REQUIRED)
+set_property(GLOBAL PROPERTY CLANG_FORMAT_SOURCE_FILES)
 
 #=============================================================================================== ADD PROJECT TARGETS ===
 # MUST COME AFTER DEPENDENCY LOCATING
@@ -162,18 +163,20 @@ endif()
 
 #================================================================================== SETUP CLANG FORMATTING TARGETS ===
 
-file(GLOB_RECURSE CLANG_FORMAT_SOURCE_FILES "${CPP_SRC_PATH}/*.cpp" "${CPP_SRC_PATH}/*.h") 
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    get_property(CLANG_FORMAT_SOURCE_FILES_VALUE GLOBAL PROPERTY CLANG_FORMAT_SOURCE_FILES)
 
-add_custom_target(check-cpp-format
-    COMMAND ${CLANG_FORMAT_EXECUTABLE} -style=file --dry-run -Werror ${CLANG_FORMAT_SOURCE_FILES}
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    COMMENT "Check the C++ code format with clang-format"
-)
-set_target_properties(check-cpp-format PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    add_custom_target(check-cpp-format
+        COMMAND echo "WORKING DIRECTORY: $(pwd)"; ${CLANG_FORMAT_EXECUTABLE} -style=file --dry-run -Werror ${CLANG_FORMAT_SOURCE_FILES_VALUE}
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "Check the C++ code format with clang-format"
+    )
+    set_target_properties(check-cpp-format PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
-add_custom_target(format
-    COMMAND clang-format -style=file -i ${CLANG_FORMAT_SOURCE_FILES}
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    COMMENT "Format the C++ code with clang-format"
-)
-set_target_properties(format PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    add_custom_target(format-cpp
+        COMMAND clang-format -style=file -i ${CLANG_FORMAT_SOURCE_FILES_VALUE}
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        COMMENT "Format the C++ code with clang-format"
+    )
+    set_target_properties(format-cpp PROPERTIES EXCLUDE_FROM_ALL TRUE)
+endif()

@@ -261,12 +261,12 @@ The formatting can be checked using `clang-format`_ by running
    $ cmake -S . -B build ...
    $ cmake --build build --target check-cpp-format
 
-which will indicate if the formatting is correct. The files can be re-formatted to match the
+which will indicate if the formatting is correct. The c++ files can be re-formatted to match the
 style guidance by running
 
 .. code-block
 
-   $ cmake --build build --target format
+   $ cmake --build build --target format-cpp
 
 .. CAUTION::
     Commit all changes prior to running the format command. This will edit all source files.
