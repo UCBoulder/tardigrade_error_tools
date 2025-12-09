@@ -43,10 +43,8 @@ requirements:
     - sphinxcontrib-bibtex
   host:
     - python {{ python }}
-    - eigen >=3.3.7
   run:
     - python
-    - eigen >=3.3.7
 
 test:
   requires:
