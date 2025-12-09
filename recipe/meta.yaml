@@ -43,6 +43,7 @@ requirements:
     - sphinxcontrib-bibtex
   host:
     - python {{ python }}
+    - pip
   run:
     - python
 
