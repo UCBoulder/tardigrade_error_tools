@@ -163,7 +163,6 @@ endif()
 #================================================================================== SETUP CLANG FORMATTING TARGETS ===
 
 file(GLOB_RECURSE CLANG_FORMAT_SOURCE_FILES "${CPP_SRC_PATH}/*.cpp" "${CPP_SRC_PATH}/*.h") 
-message("CLANG_FORMAT_SOURCE_FILES: ${CLANG_FORMAT_SOURCE_FILES}")
 
 add_custom_target(check-cpp-format
     COMMAND ${CLANG_FORMAT_EXECUTABLE} -style=file --dry-run -Werror ${CLANG_FORMAT_SOURCE_FILES}
