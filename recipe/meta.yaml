@@ -25,13 +25,14 @@ build:
 
 requirements:
   build:
-    - python {{ python }}
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - cython                                 # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - make
     - cmake >=3.30
     - breathe >=4.3.0
     - clang-tools
-    - cython
     - doxygen
     - libboost-python-devel >=1.82
     - pip
@@ -44,6 +45,7 @@ requirements:
   host:
     - python {{ python }}
     - pip
+    - cython
     - setuptools >=77
     - setuptools_scm >=8
   run:
