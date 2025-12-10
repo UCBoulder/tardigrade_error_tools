@@ -4,7 +4,7 @@ cmake>=3.30
 compilers
 cython
 doxygen>=1.9
-eigen>=3.3.7
+gersemi
 libboost-python-devel>=1.82
 make
 pip
@@ -15,6 +15,7 @@ python
 python-build
 setuptools >=77
 setuptools_scm >=8
+clang-tools
 sphinx>=3.0.4
 sphinx_rtd_theme>=0.4.3
 sphinxcontrib-bibtex

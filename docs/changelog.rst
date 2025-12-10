@@ -6,12 +6,31 @@ Changelog
 #########
 
 ******************
-0.9.8 (unreleased)
+0.9.9 (unreleased)
+******************
+
+Internal Changes
+================
+- Added a cmake linter (:pull:39`). By `Nathan Miller`_.
+- Added the clang-tidy linter (:pull:40`). By `Nathan Miller`_.
+- Added the clang-format linter (:pull:41`). By `Nathan Miller`_.
+
+******************
+0.9.8 (12-02-2025)
 ******************
 
 Internal Changes
 ================
 - Added inline to the functions to help with compiling header online libraries (:pull:`32`). By `Nathan Miller`_.
+- Updating build and recipe (:pull:`33`). By `Kyle Brindley`_.
+- Enabled the build to be performed using a matrix to simplify the GitHub action file (:pull:`34`). By `Nathan Miller`_.
+- Removed duplicate tests (:pull:`35`). By `Nathan Miller`_.
+- Fixed the library environment for macos builds (:pull:`36`). By `Kyle Brindley`_.
+- Added linux/macos conda-build test (:pull:`37`). By `Kyle Brindley`_.
+
+Release
+=======
+- Released version 0.9.8 (:pull:`38`). By `Nathan Miller`_.
 
 ******************
 0.9.7 (05-05-2025)
