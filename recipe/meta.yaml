@@ -25,24 +25,29 @@ build:
 
 requirements:
   build:
+    - python
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - cython
     - {{ compiler('cxx') }}
     - make
     - cmake >=3.30
-    - clang-tools
-  host:
-    - python {{ python }}
     - breathe >=4.3.0
+    - clang-tools
+    - doxygen
+    - libboost-python-devel >=1.82
+    - pip
+    - python-build
+    - setuptools >=77
+    - setuptools_scm >=8
     - sphinx >=3.0.4
     - sphinx_rtd_theme >=0.4.3
     - sphinxcontrib-bibtex
-    - python-build
+  host:
+    - python {{ python }}
     - pip
     - cython
     - setuptools >=77
     - setuptools_scm >=8
-    - eigen >=3.3.7
-    - libboost-python-devel >=1.82
-    - doxygen
   run:
     - python
 
