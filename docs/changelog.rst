@@ -6,14 +6,34 @@ Changelog
 #########
 
 ******************
-0.9.9 (unreleased)
+0.9.10 (unreleased)
 ******************
 
 Internal Changes
 ================
-- Added a cmake linter (:pull:39`). By `Nathan Miller`_.
-- Added the clang-tidy linter (:pull:40`). By `Nathan Miller`_.
-- Added the clang-format linter (:pull:41`). By `Nathan Miller`_.
+- Updated the conda_build_config.yaml file with comments to try and explain logic (:pull:`44`). By `Kyle Brindley`_.
+- Updated the meta.yaml file with comments to try and explain decisions (:pull:`45`). By `Kyle Brindley`_.
+- Re-enabled the cmake linting (:pull:`46`). By `Nathan Miller`_.
+- Use the clang-tidy configuration file header filter (:pull:`47`). By `Nathan Miller`_.
+
+Release
+=======
+- Released version 0.9.10 (:pull:`48`). By `Nathan Miller`_.
+
+******************
+0.9.9 (12-11-2025)
+******************
+
+Internal Changes
+================
+- Added a cmake linter (:pull:`39`). By `Nathan Miller`_.
+- Added the clang-tidy linter (:pull:`40`). By `Nathan Miller`_.
+- Added the clang-format linter (:pull:`41`). By `Nathan Miller`_.
+- Separating the build and host (:pull:`42`). By `Kyle Brindley`_.
+
+Release
+=======
+- Released version 0.9.9 (:pull:`43`). By `Nathan Miller`_.
 
 ******************
 0.9.8 (12-02-2025)
