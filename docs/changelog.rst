@@ -5,8 +5,16 @@
 Changelog
 #########
 
+*******************
+0.9.11 (unreleased)
+*******************
+
+Internal Changes
+================
+- Added minor version pinning to the recipe (:pull:`49`). By `Nathan Miller`_.
+
 ******************
-0.9.10 (unreleased)
+0.9.10 (12-17-2025)
 ******************
 
 Internal Changes
