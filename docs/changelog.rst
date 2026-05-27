@@ -6,16 +6,25 @@ Changelog
 #########
 
 *******************
-0.9.11 (unreleased)
+0.9.12 (unreleased)
+*******************
+
+*******************
+0.9.11 (05-26-2025)
 *******************
 
 Internal Changes
 ================
 - Added minor version pinning to the recipe (:pull:`49`). By `Nathan Miller`_.
+- Updated to use rattler-build (:pull:`50`). By `Nathan Miller`_.
 
-******************
+Release
+=======
+- Released version 0.9.11 (:pull:`51`). By `Nathan Miller`_.
+
+*******************
 0.9.10 (12-17-2025)
-******************
+*******************
 
 Internal Changes
 ================
